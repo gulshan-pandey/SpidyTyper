@@ -202,4 +202,8 @@ document.getElementById('Game').addEventListener("keyup", (e) => {
 });
 
 
+<<<<<<< HEAD
 newGame()
+=======
+newGame()
+>>>>>>> 9cc664a (updated)
