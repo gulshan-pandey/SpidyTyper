@@ -143,8 +143,8 @@ div.word{                          /* this is the css applied to the js injected
     height:1.4rem;
     width:0.11rem;
     position:fixed;
-    top: 230x;
-    left: 240px;
+    top: 290px;
+    left: 300px;
     background-color: var(--prime-color);
     animation: blink 0.7s infinite
 
