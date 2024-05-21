@@ -92,9 +92,6 @@ document.getElementById('Game').addEventListener("keyup", (e) => {
     const isSpace = key === ' ';
     const isBackspace = key === 'Backspace';
     const isFirstLetter = currentLetter === currentWord.firstChild;
-
-    const isExtra = document.querySelector(".letter.extra");
-
     // console.log(   currentLetter)
 
     if (document.querySelector("#Game.over")) {
@@ -180,10 +177,6 @@ document.getElementById('Game').addEventListener("keyup", (e) => {
             removeClass(currentWord.lastChild, 'correct');
 
         }
-
-        if(isExtra){
-            currentWord.removeChild(isExtra)
-            }
     }
 
 
@@ -209,17 +202,4 @@ document.getElementById('Game').addEventListener("keyup", (e) => {
 });
 
 
-
 newGame()
-
-document.getElementById('hiddenInput').focus();
-
-
-
-
-
-
-
-
-    
-    
