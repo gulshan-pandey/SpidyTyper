@@ -16,7 +16,7 @@ html{
 }
 
 body{
-    font-size: 1.4rem;
+    font-size: 1.2rem;
 }
 
 main{
@@ -77,7 +77,7 @@ button{
     overflow: hidden;
     margin-top: 6rem;
     color:var(--textPrimary);
-    position: relative;
+    /* position: relative; */
     font-size: 1.7rem;
 }
 
@@ -197,39 +197,13 @@ div.word{                          /* this is the css applied to the js injected
     resize: none;
 }
 
-@media(max-width: 450px){
-    html {
-        /* font-size: 8px; */
-        font-size: 70%;
-    }
 
-
-    main{
-        width:80%;
-        
-        height: 90%;
-        margin: 15% auto;
-        
-    }
-
-
-    
-#mobile-input-field {
-    display: block;
-   
-}
-#Game{
-    line-height: 2rem;
-    padding: 0 4rem;
-    height: 15rem;
-    overflow: hidden;
-    margin-top: 10rem;
-    color:var(--textPrimary);
+section{
     position: relative;
-    font-size: 1.7rem;
+    height: 100%;
 }
 
-}
+
 
 @media(max-width: 670px){
     html {
@@ -261,9 +235,9 @@ div.word{                          /* this is the css applied to the js injected
         position: relative;
         font-size: 1.7rem;
         filter: blur(0);
-        
-    
+        font-size: 1.5rem;
     }
+   
 
 
     #Game:focus #words {
@@ -281,8 +255,38 @@ div.word{                          /* this is the css applied to the js injected
     }
  
 }
-<<<<<<< HEAD
    
-=======
-   
->>>>>>> 9cc664a (updated)
+
+@media(max-width: 450px){
+    html {
+         /* font-size: 8px; */
+         font-size: 70%;
+    }
+    
+    
+    main{
+        width:80%;
+        
+        height: 90%;
+        margin: 15% auto;
+            
+        }
+    
+    
+        
+    #mobile-input-field {
+        display: block;
+       
+    }
+    #Game{
+        line-height: 2rem;
+        padding: 0 1rem;
+        height: 15rem;
+        overflow: hidden;
+        margin-top: 10rem;
+        color:var(--textPrimary);
+        position: relative;
+        font-size: 1.7rem;
+    }
+    
+    }
