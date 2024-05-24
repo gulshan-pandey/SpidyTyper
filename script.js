@@ -183,7 +183,7 @@ document.getElementById('Game').addEventListener("keyup", (e) => {
     }
 
     // ------------ Move lines / words
-    if (currentWord.getBoundingClientRect().top > 400) {
+    if (currentWord.getBoundingClientRect().top > 450) {
         const words = document.getElementById('words');
         const margin = parseInt(words.style.marginTop || '0px');
         words.style.marginTop = margin - 25 + 'px';
@@ -290,7 +290,7 @@ document.getElementById('mobile-input-field').addEventListener('input', (e) => {
     }
 
     // ------------ Move lines / words
-    if (currentWord.getBoundingClientRect().top > 350) {
+    if (currentWord.getBoundingClientRect().top > 300) {
         const words = document.getElementById('words');
         const margin = parseInt(words.style.marginTop || '0px');
         words.style.marginTop = (margin - 35) + 'px';
