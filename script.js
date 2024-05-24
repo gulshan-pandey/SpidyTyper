@@ -13,7 +13,6 @@ function checkScreenWidth() {
         document.querySelector('#mobile-input').style.display = "block";
        
     } else {
-        // Optionally, add code to handle desktop view
         document.querySelector('#mobile-input').style.display = "none";
     }
 }
@@ -184,7 +183,7 @@ document.getElementById('Game').addEventListener("keyup", (e) => {
     }
 
     // ------------ Move lines / words
-    if (currentWord.getBoundingClientRect().top > 450) {
+    if (currentWord.getBoundingClientRect().top > 400) {
         const words = document.getElementById('words');
         const margin = parseInt(words.style.marginTop || '0px');
         words.style.marginTop = margin - 25 + 'px';
@@ -200,17 +199,24 @@ document.getElementById('Game').addEventListener("keyup", (e) => {
     cursor.style.left = (nextLetter || nextWord).getBoundingClientRect()[nextLetter ? 'left' : 'right'] + 'px';
 });
 
+
+
+
 // Event Listener for Mobile Input (Almost identical to the desktop event listener)
-document.getElementById('mobile-input-field').addEventListener('keyup', (e) => {
-    let key = e.key;  
+document.getElementById('mobile-input-field').addEventListener('focus', () => {
+    console.log('Input field focused');
+});
+
+document.getElementById('mobile-input-field').addEventListener('input', (e) => {
+    let key = e.data; // Use e.data to get the last input character
     let currentWord = document.querySelector(".word.current");
     let currentLetter = document.querySelector(".letter.current");
-    const expected = currentLetter?.innerHTML || ' ';             
-    const isLetter = key.length === 1 && key !== ' ';
+    const expected = currentLetter?.innerHTML || ' ';
+    const isLetter = key && key.length === 1 && key !== ' ';
     const isSpace = key === ' ';
-    const isBackspace = key === 'Backspace';
+    const isBackspace = e.inputType === 'deleteContentBackward';
     const isFirstLetter = currentLetter === currentWord.firstChild;
-    let isExtra = currentWord.querySelector(".extra"); 
+    let isExtra = currentWord.querySelector(".extra");
 
     if (document.querySelector("#Game.over")) {
         return;
@@ -232,7 +238,7 @@ document.getElementById('mobile-input-field').addEventListener('keyup', (e) => {
         if (currentLetter) {
             addClass(currentLetter, key === expected ? "correct" : "incorrect");
             removeClass(currentLetter, "current");
-            if (currentLetter.nextSibling) {                              
+            if (currentLetter.nextSibling) {
                 addClass(currentLetter.nextSibling, "current");
             }
         } else {
@@ -246,9 +252,9 @@ document.getElementById('mobile-input-field').addEventListener('keyup', (e) => {
 
     if (isSpace) {
         if (expected !== " ") {
-            const lettersToInvalidate = [...document.querySelectorAll(".word.current .letter:not(.correct)")];       
+            const lettersToInvalidate = [...document.querySelectorAll(".word.current .letter:not(.correct)")];
             lettersToInvalidate.forEach(elem => {
-                addClass(elem, "incorrect");        
+                addClass(elem, "incorrect");
             });
         }
         removeClass(currentWord, "current");
@@ -261,10 +267,9 @@ document.getElementById('mobile-input-field').addEventListener('keyup', (e) => {
     }
 
     if (isBackspace) {
-         //make previous word current, last letter current
         if (isExtra) {
             currentWord.removeChild(isExtra);
-            isExtra = null; 
+            isExtra = null;
         } else if (currentLetter && isFirstLetter) {
             removeClass(currentWord, 'current');
             addClass(currentWord.previousSibling, 'current');
@@ -298,5 +303,9 @@ document.getElementById('mobile-input-field').addEventListener('keyup', (e) => {
     cursor.style.top = (nextLetter || nextWord).getBoundingClientRect().top + 2 + 'px';
     cursor.style.left = (nextLetter || nextWord).getBoundingClientRect()[nextLetter ? 'left' : 'right'] + 'px';
 });
+
+// Ensure input field is focused
+document.getElementById('mobile-input-field').focus();
+
 
 newGame();
