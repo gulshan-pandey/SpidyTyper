@@ -1,67 +1,65 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-html{
+html {
     font-family: "Quicksand", sans-serif;
-    height:100vh;
+    height: 100vh;
     width: 100%;
     --primary-color: #2b2a2a;
     --textPrimary: #fff;
     --textSecondary: #8c8888d4;
-    --prime-color : rgb(6, 153, 175);
+    --prime-color: rgb(6, 153, 175);
     background-color: var(--primary-color);
 }
 
-body{
-    font-size: 1.4rem;
+body {
+    font-size: 1.2rem;
 }
 
-main{
-    width:70%;
-    
+main {
+    width: 70%;
     height: 90%;
     margin: 3% auto;
-    
 }
 
-i{
-    height:2rem;
+i {
+    height: 2rem;
     width: 3rem;
     font-size: 2.5rem;
 }
-h1{
+
+h1 {
     color: var(--prime-color);
-    /* letter-spacing: 0.1rem; */
     font-family: "Chakra Petch", sans-serif;
-    
+    margin: 2rem;
 }
 
-#header{
-    width:100%;
-    display:flex;
+#header {
+    width: 100%;
+    display: flex;
     align-items: center;
     justify-content: space-between;
-    /* grid-template-columns: 1fr 1fr; */
+     /* grid-template-columns: 1fr 1fr; */
     /* margin-top: 2 rem; */
     font-weight: 600;
-    margin:3rem 3rem 3rem 3rem;
+    margin: 5rem 3rem;
 }
 
-#info{
+#info {
     color: var(--prime-color);
-    /* margin: 2rem; */
 }
 
-#button{
-    text-align: right ;
+#button {
+    text-align: right;
     margin-right: 3rem;
 }
-button{
+
+button {
     background-color: #292828;
-    color:var(--prime-color);
+    color: var(--prime-color);
     border: 0;
     font-weight: 600;
     padding: 0.4rem 1.5rem;
@@ -69,168 +67,188 @@ button{
     font-size: 1.1rem;
 }
 
-
-#Game{
-    line-height: 2rem;
+#Game {
+    line-height: 2.5rem;
     padding: 0 4rem;
-    height: 15rem;
+    height: 12rem;
     overflow: hidden;
-    margin-top: 6rem;
-    color:var(--textPrimary);
-    position: relative;
+    margin-top: 8rem;
+    color: var(--textPrimary);
+    /* position: relative; */
     font-size: 1.7rem;
 }
 
-div.word{                          /* this is the css applied to the js injected html*/
+div.word {                      /* this is the css applied to the js injected html*/
     /* display: flex;
     gap: 0.6rem;
     flex-wrap: wrap; */
-
+    
     display: inline-block;
     font-weight: 600;
-    margin: 0.25rem 0.6rem; 
+    margin: 0.25rem 0.6rem;
 }
 
-#words{
-    filter:blur(0.4rem);
-    color:var(--textSecondary);
+#words {
+    filter: blur(0.4rem);
+    color: var(--textSecondary);
 }
 
 #Game:focus {
     outline: 0;
 }
-#Game:focus #words{
+
+#Game:focus #words {
     filter: blur(0);
 }
 
-#focus-error{
+#focus-error {
     position: absolute;
-    inset:0;                /* this will make the element pop up and visible above all the elements */
-    padding-top:3rem;
+    inset: 0;                /* this will make the element pop up and visible above all the elements */
+    padding-top: 6rem;
     text-align: center;
     font-weight: 800;
-    font-size:1.7rem;
+    font-size: 1.7rem;
 }
 
-#Game:focus #focus-error{           /*to start the game*/
-    display:none
+#Game:focus #focus-error {
+    display: none;
 }
 
-.letter.correct{
+.letter.correct {
     color: var(--textPrimary);
 }
 
-.letter.incorrect{
-    color: rgb(243, 67, 67)
+.letter.incorrect {
+    color: rgb(243, 67, 67);
 }
 
-
-/*--------------------------cursor & blinking-------------------------------*/
-@keyframes blink{
-    0%{
-        opacity: 1;
-    }
-    50%{
-        opacity: 0;
-    }
-    100%{
-        opacity: 1;
-    }
-    
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
 }
-#cursor{
+
+#cursor {
     display: none;
-    height:1.4rem;
-    width:0.11rem;
-    position:fixed;
-    top: 290px;
-    left: 300px;
+    height: 1.4rem;
+    width: 0.11rem;
+    position: fixed;
+    top: 230px;
+    left: 240px;
     background-color: var(--prime-color);
-    animation: blink 0.7s infinite
-
+    animation: blink 0.7s infinite;
 }
 
-#Game:focus #cursor{
+#Game:focus #cursor {
     display: block;
 }
-
-
-
-
-
 /*---------------------Game over-------------------------------*/
 
-
-
-#Game.over #words{
+#Game.over #words {
     filter: blur(0);
-    opacity : 0.5;
+    opacity: 0.5;
 }
 
-
-#Game.over:focus #cursor{
-   display: none;
+#Game.over:focus #cursor {
+    display: none;
 }
 
-#Game.over #focus-error{
+#Game.over #focus-error {
     display: none;
 }
 
 
-@media(max-width: 450px){
-    html {
-        /* font-size: 8px; */
-        font-size: 70%;
-    }
-
-
-    main{
-        width:80%;
-        
-        height: 90%;
-        margin: 15% auto;
-        
-    }
-
-
-    #Game{
-        line-height: 2rem;
-        padding: 0 4rem;
-        height: 15rem;
-        overflow: hidden;
-        margin-top: 10rem;
-        color:var(--textPrimary);
-        position: relative;
-        font-size: 1.7rem;
-    }
-
+section {
+    position: relative;
+    height: 100%;
 }
 
-@media(max-width: 670px){
+
+#mobile-input {
+    /* position: fixed;
+    bottom: 0;
+    left: 0; */
+    height:20%;
+    display:none;
+    width: 100%;
+    background-color: #292828;
+    padding: 10px;
+    color: var(--prime-color);
+    font-size: 16px;
+    margin-top: 2rem;
+}
+
+#mobile-input-field {
+   
+    width: 100%;
+    margin: auto;
+    height: 9rem;
+    background-color: #292828;
+    color: var(--prime-color);
+    border: 1px solid var(--prime-color);
+    padding: 0.5rem;
+    font-size: 1.5rem;
+    resize: none;
+}
+
+
+@media (max-width: 670px) {
     html {
-        /* font-size: 8px; */
-        font-size: 80%;
+        font-size: 90%;
     }
 
-
-    main{
-        width:80%;
-        
+    main {
+        width: 80%;
         height: 90%;
         margin: 10% auto;
-        
     }
 
+    #mobile-input-field {
+        display: block;
+    }
+    
+#focus-error {
+    position: absolute;
+    inset: 0;                /* this will make the element pop up and visible above all the elements */
+    padding-top: 5rem;
+    text-align: center;
+    font-weight: 800;
+    font-size: 1.7rem;
+}
 
-    #Game{
+
+    #Game {
         line-height: 2rem;
-        padding: 0 4rem;
-        height: 13rem;
-        overflow: hidden;
+        padding: 0 2rem;
+        height: 10rem;
+        margin-top: 5rem;
+        font-size: 1.5rem;
+        filter: blur(0);
+    }
+   
+}
+
+@media (max-width: 450px) {
+    html {
+        font-size: 60%;
+    }
+
+    main {
+        width: 80%;
+        height: 90%;
+        margin: 15% auto;
+    }
+
+    #mobile-input-field {
+        display: block;
+    }
+
+    #Game {
+        line-height: 2rem;
+        padding: 0 1rem;
+        height: 10rem;
         margin-top: 10rem;
-        color:var(--textPrimary);
-        position: relative;
         font-size: 1.7rem;
     }
 
+   
 }
