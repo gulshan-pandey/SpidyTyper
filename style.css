@@ -58,7 +58,7 @@ h1 {
 }
 
 button {
-    background-color: #292828;
+    background-color: #1e1d1d;
     color: var(--prime-color);
     border: 0;
     font-weight: 600;
@@ -229,26 +229,45 @@ section {
 
 @media (max-width: 450px) {
     html {
-        font-size: 60%;
+        font-size: 70%;
     }
 
     main {
         width: 80%;
         height: 90%;
-        margin: 15% auto;
+        margin: 12% auto;
     }
 
     #mobile-input-field {
         display: block;
     }
 
+    #focus-error {
+        position: absolute;
+        inset: 0;                /* this will make the element pop up and visible above all the elements */
+        padding-top: 5rem;
+        text-align: center;
+        font-weight: 800;
+        font-size: 1.7rem;
+    }
+
     #Game {
         line-height: 2rem;
         padding: 0 1rem;
         height: 10rem;
-        margin-top: 10rem;
+        margin-top: 9rem;
         font-size: 1.7rem;
     }
 
-   
+    button {
+       
+        font-weight: 600;
+        padding: 0.6rem 1.7rem;
+        border-radius: 0.5rem;
+        font-size: 1.5rem;
+    }
+    
+    #info {
+       font-size: 1.8rem;
+    }
 }
