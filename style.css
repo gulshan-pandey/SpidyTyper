@@ -242,6 +242,15 @@ section {
         display: block;
     }
 
+    #focus-error {
+        position: absolute;
+        inset: 0;                /* this will make the element pop up and visible above all the elements */
+        padding-top: 5rem;
+        text-align: center;
+        font-weight: 800;
+        font-size: 1.7rem;
+    }
+
     #Game {
         line-height: 2rem;
         padding: 0 1rem;
