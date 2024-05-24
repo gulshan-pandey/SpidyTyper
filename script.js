@@ -180,7 +180,7 @@ document.getElementById('Game').addEventListener("keyup", (e) => {
 // Event Listener for Mobile Input
 document.getElementById('mobile-input-field').addEventListener('keyup', function(e) {
     let key = e.key;  
-    console.log(key);
+    // console.log(key);
     let currentWord = document.querySelector(".word.current");
     let currentLetter = document.querySelector(".letter.current");
     const expected = currentLetter?.innerHTML || ' ';             
