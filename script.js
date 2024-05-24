@@ -1,8 +1,36 @@
 var gameTime = 30;
 
+
+
+function checkScreenWidth() {
+    var gameElement = document.getElementById('Game');
+    var screenWidth = window.innerWidth;
+    
+    if (screenWidth < 670) {
+        gameElement.removeAttribute('tabindex');
+        document.getElementById('focus-error').style.display = "none";
+        document.getElementById('words').style.filter = "none";
+        document.querySelector('#mobile-input').style.display = "block";
+       
+    } else {
+        // Optionally, add code to handle desktop view
+        document.querySelector('#mobile-input').style.display = "none";
+    }
+}
+
+// Check screen width on initial load
+window.addEventListener('load', checkScreenWidth);
+
+// Check screen width on resize
+window.addEventListener('resize', checkScreenWidth);
+
+
+
+
+
 const words = "In a village nestled between rolling green hills lived a baker named Emilia. Emilia wasn't your ordinary baker; her bread wasn't just sustenance, it was magic. Each loaf held a whisper of happiness, a sprinkle of hope, and a generous helping of warmth. People from miles around would line up for a taste, their faces etched with worries that seemed to melt away with every bite. One crisp autumn morning, a peculiar young woman named Luna arrived at Emilia's bakery. Luna wasn't from the village, and an air of mystery clung to her like the scent of woodsmoke. She requested a loaf unlike any Emilia had made before - a loaf to mend broken heart. Intrigued, Emilia baked through the night. She kneaded in whispers of forgotten dreams, the echo of laughter lost, and a melody of hope that refused to die. As dawn painted the sky, a golden brown loaf emerged, imbued with a quiet strength. Luna took bread, her eyes filled with a gratitude that spoke volumes. Days turned into weeks, and whispers filled  village about Luna. Some said she was a sorceress, others a wanderer with a hidden past. But when the once vibrant colours in the village seemed to lose their luster, Luna reappeared at Emilia's door. This time, she requested bread for the whole village. A heavy sadness had settled over them, its source unknown. Emilia, sensing the urgency, baked a loaf that embodied the collective spirit of the village their resilience, their shared joys, and their unwavering love for their home. As the villagers savored the bread, a warmth spread through them, chasing away the gloom. Laughter returned, stories were shared, and the forgotten joy of community rekindled. Luna, with a gentle smile, thanked Emilia and disappeared once more. News of the magical bread reached the ears of a greedy baron who ruled the neighbouring lands. His heart, as cold winter, craved the power to control emotions. He stormed into Emilia's bakery, demanding the recipe. Emilia refused. The baron, enraged, threatened to take everything from her. But Emilia, emboldened by love baked into her bread, stood her ground. She explained that the true magic wasn't in the ingredients, but in the love and care poured into every loaf. The baron, confused and humbled, left empty-handed. The villagers, inspired by Emilia's bravery, rallied around her. Together, they built a stronger, more vibrant community, sharing not just bread, but also their stories, their laughter, and their unwavering spirit. Luna, though unseen, became a legend - a reminder that even the smallest act of love can mend hearts and bring back the magic to life".split(" ");
 
-let newGameButton = document.getElementById("newGameButton")
+let newGameButton = document.getElementById("newGameButton");
 
 newGameButton.addEventListener('click', (e) => {
     gameTime = 30;
@@ -21,8 +49,8 @@ function removeClass(elem, name) {
 }
 
 function randomIndex() {
-    let ind = Math.floor(Math.random() * words.length)
-    return words[ind]
+    let ind = Math.floor(Math.random() * words.length);
+    return words[ind];
 }
 
 function addWords(randWord) {
@@ -30,15 +58,15 @@ function addWords(randWord) {
 }
 
 function newGame() {
-    document.querySelector('#mobile-input-field').value=null
-    document.querySelector("#words").innerHTML = ''
+    document.querySelector('#mobile-input-field').value = null;
+    document.querySelector("#words").innerHTML = '';
     for (let i = 0; i < 200; i++) {
-        document.querySelector("#words").innerHTML += addWords(randomIndex())
+        document.querySelector("#words").innerHTML += addWords(randomIndex());
     }
     addClass(document.querySelector(".word"), "current");               
     addClass(document.querySelector(".letter"), "current");
     document.getElementById('info').innerHTML = gameTime;
-    window.timer = null        
+    window.timer = null;        
 
     // Reset cursor position
     const cursor = document.querySelector("#cursor");
@@ -48,25 +76,28 @@ function newGame() {
 
 function getWPM() {
     const words = [...document.querySelectorAll('.word')];
-    const lastTypedWord = document.querySelector('.word.current')
-    const lastTypedWordIndex = words.indexOf(lastTypedWord) + 1
-    const typedWords = words.slice(0, lastTypedWordIndex)
+    const lastTypedWord = document.querySelector('.word.current');
+    const lastTypedWordIndex = words.indexOf(lastTypedWord) + 1;
+    const typedWords = words.slice(0, lastTypedWordIndex);
     const correctWords = typedWords.filter(word => {
         const letters = [...word.children];
-        const incorrectLetters = letters.filter(letter => letter.classList.contains("incorrect"))
-        const correctLetters = letters.filter(letter => letter.classList.contains("correct"))
+        const incorrectLetters = letters.filter(letter => letter.classList.contains("incorrect"));
+        const correctLetters = letters.filter(letter => letter.classList.contains("correct"));
 
         return incorrectLetters.length === 0 && correctLetters.length === letters.length;
 
     });
-    return 2 * correctWords.length
+    return 2 * correctWords.length;
 }
 
 function gameOver() {                           
-    clearInterval(window.timer)
+    clearInterval(window.timer);
     addClass(document.getElementById('Game'), 'over');
-    document.querySelector('#info').innerText = `WPM: ${getWPM()}`
+    document.querySelector('#info').innerText = `WPM: ${getWPM()}`;
 }
+
+
+
 
 document.getElementById('Game').addEventListener("keyup", (e) => {
     let key = e.key;
@@ -77,7 +108,7 @@ document.getElementById('Game').addEventListener("keyup", (e) => {
     const isSpace = key === ' ';
     const isBackspace = key === 'Backspace';
     const isFirstLetter = currentLetter === currentWord.firstChild;
-    let isExtra = currentWord.querySelector(".extra"); // Use let here
+    let isExtra = currentWord.querySelector(".extra"); 
 
     if (document.querySelector("#Game.over")) {
         return;
@@ -87,18 +118,18 @@ document.getElementById('Game').addEventListener("keyup", (e) => {
        //-------------------- Timer-------------------
     if (!window.timer && isLetter) {
         window.timer = setInterval(() => {
-            gameTime = gameTime - 1
+            gameTime = gameTime - 1;
             if (gameTime <= 0) {
-                gameOver()
+                gameOver();
                 return;
             }
-            document.querySelector('#info').innerText = gameTime
-        }, 1000)
+            document.querySelector('#info').innerText = gameTime;
+        }, 1000);
     }
 
     if (isLetter) {
         if (currentLetter) {
-            addClass(currentLetter, key === expected ? "correct" : "incorrect")
+            addClass(currentLetter, key === expected ? "correct" : "incorrect");
             removeClass(currentLetter, "current");
             if (currentLetter.nextSibling) {                              
                 addClass(currentLetter.nextSibling, "current");
@@ -106,16 +137,16 @@ document.getElementById('Game').addEventListener("keyup", (e) => {
         } else {
             const incorrectLetter = document.createElement("span");
             incorrectLetter.innerHTML = key;
-            incorrectLetter.className = "letter incorrect extra"
+            incorrectLetter.className = "letter incorrect extra";
             currentWord.appendChild(incorrectLetter);
-            isExtra = incorrectLetter; // Update isExtra here
+            isExtra = incorrectLetter;
         }
     }
 
     if (isSpace) {
         if (expected !== " ") {
-            const letterToInvalidate = [...document.querySelectorAll(".word.current .letter:not(.correct)")];       
-            letterToInvalidate.forEach(elem => {
+            const lettersToInvalidate = [...document.querySelectorAll(".word.current .letter:not(.correct)")];       
+            lettersToInvalidate.forEach(elem => {
                 addClass(elem, "incorrect");        
             });
         }
@@ -132,7 +163,7 @@ document.getElementById('Game').addEventListener("keyup", (e) => {
          //make previous word current, last letter current
         if (isExtra) {
             currentWord.removeChild(isExtra);
-            isExtra = null; // Reset isExtra after removing
+            isExtra = null; 
         } else if (currentLetter && isFirstLetter) {
             removeClass(currentWord, 'current');
             addClass(currentWord.previousSibling, 'current');
@@ -142,7 +173,7 @@ document.getElementById('Game').addEventListener("keyup", (e) => {
             removeClass(currentWord.previousSibling.lastChild, 'correct');
         } else if (currentLetter && !isFirstLetter) {
             removeClass(currentLetter, 'current');
-            addClass(currentLetter.previousSibling, 'current')
+            addClass(currentLetter.previousSibling, 'current');
             removeClass(currentLetter.previousSibling, 'incorrect');
             removeClass(currentLetter.previousSibling, 'correct');
         } else if (!currentLetter) {
@@ -162,25 +193,16 @@ document.getElementById('Game').addEventListener("keyup", (e) => {
 
 
     //   Cursor movement
-    const nextLetter = document.querySelector(".letter.current")
+    const nextLetter = document.querySelector(".letter.current");
     const nextWord = document.querySelector(".word.current");
     const cursor = document.querySelector("#cursor");
     cursor.style.top = (nextLetter || nextWord).getBoundingClientRect().top + 2 + 'px';
     cursor.style.left = (nextLetter || nextWord).getBoundingClientRect()[nextLetter ? 'left' : 'right'] + 'px';
 });
 
-
-
-
-
-
-
-
-
-// Event Listener for Mobile Input
-document.getElementById('mobile-input-field').addEventListener('keyup', function(e) {
+// Event Listener for Mobile Input (Almost identical to the desktop event listener)
+document.getElementById('mobile-input-field').addEventListener('keyup', (e) => {
     let key = e.key;  
-    // console.log(key);
     let currentWord = document.querySelector(".word.current");
     let currentLetter = document.querySelector(".letter.current");
     const expected = currentLetter?.innerHTML || ' ';             
@@ -188,7 +210,7 @@ document.getElementById('mobile-input-field').addEventListener('keyup', function
     const isSpace = key === ' ';
     const isBackspace = key === 'Backspace';
     const isFirstLetter = currentLetter === currentWord.firstChild;
-    let isExtra = currentWord.querySelector(".extra"); // Use let here
+    let isExtra = currentWord.querySelector(".extra"); 
 
     if (document.querySelector("#Game.over")) {
         return;
@@ -218,15 +240,15 @@ document.getElementById('mobile-input-field').addEventListener('keyup', function
             incorrectLetter.innerHTML = key;
             incorrectLetter.className = "letter incorrect extra";
             currentWord.appendChild(incorrectLetter);
-            isExtra = incorrectLetter; // Update isExtra here
+            isExtra = incorrectLetter;
         }
     }
 
     if (isSpace) {
         if (expected !== " ") {
-            const lettersToInvalidate = document.querySelectorAll(".word.current .letter:not(.correct)");
+            const lettersToInvalidate = [...document.querySelectorAll(".word.current .letter:not(.correct)")];       
             lettersToInvalidate.forEach(elem => {
-                addClass(elem, "incorrect");
+                addClass(elem, "incorrect");        
             });
         }
         removeClass(currentWord, "current");
@@ -239,10 +261,10 @@ document.getElementById('mobile-input-field').addEventListener('keyup', function
     }
 
     if (isBackspace) {
-        // Make previous word current, last letter current
+         //make previous word current, last letter current
         if (isExtra) {
             currentWord.removeChild(isExtra);
-            isExtra = null; // Reset isExtra after removing
+            isExtra = null; 
         } else if (currentLetter && isFirstLetter) {
             removeClass(currentWord, 'current');
             addClass(currentWord.previousSibling, 'current');
@@ -268,23 +290,13 @@ document.getElementById('mobile-input-field').addEventListener('keyup', function
         const margin = parseInt(words.style.marginTop || '0px');
         words.style.marginTop = (margin - 35) + 'px';
     }
+
+    //   Cursor movement
+    const nextLetter = document.querySelector(".letter.current");
+    const nextWord = document.querySelector(".word.current");
+    const cursor = document.querySelector("#cursor");
+    cursor.style.top = (nextLetter || nextWord).getBoundingClientRect().top + 2 + 'px';
+    cursor.style.left = (nextLetter || nextWord).getBoundingClientRect()[nextLetter ? 'left' : 'right'] + 'px';
 });
 
-newGame()
-
-window.addEventListener('resize', function() {
-    var gameElement = document.getElementById('Game');
-    var screenWidth = window.innerWidth;
-    
-    if (screenWidth < 670) {
-      gameElement.removeAttribute('tabindex');
-
-      document.getElementById('focus-error').style.display="none";
-      document.getElementById('words').style.filter = "none";
-      document.querySelector('#mobile-input').style.display="block";
-      
-    } 
-    
-  });
-
-
+newGame();
