@@ -1,5 +1,7 @@
 ## SpidyTyper ️
 
+https://spidytyper.netlify.app/
+
 **SpidyTyper**  a fun and interactive typing test game designed to help you improve your typing speed and accuracy. Challenge yourself and see how fast you can type with this spider-themed game!
 
 ## Features
